@@ -1,0 +1,25 @@
+@startuml 
+class Profesor {
+  +Nombre: String
+  +Cedula: String	
+  +Autenticar(): Boolean
+  +RegistrarAsistencia(Tarjeta: TarjetaNFC)
+}
+
+class TarjetaNFC {
+  +Validar(): Boolean
+}
+
+class SistemaRegistroAsistencia {
+  +ActivarLecturaNFC(): void
+  +VerificarValidez(Tarjeta: TarjetaNFC): void
+  +RegistrarAsistencia(profesor: Profesor, tarjeta: TarjetaNFC): void
+  +MostrarMensajeConfirmacion(): void
+}
+
+Profesor --> TarjetaNFC: Utiliza
+Profesor --> SistemaRegistroAsistencia: Utiliza
+SistemaRegistroAsistencia --> TarjetaNFC: Utiliza
+TarjetaNFC --> SistemaRegistroAsistencia: VerificaValidez
+
+@enduml
