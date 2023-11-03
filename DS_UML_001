@@ -1,0 +1,53 @@
+@startuml
+
+actor Profesor
+participant "Sistema de Asistencia" as Sistema
+
+Profesor -> Sistema : Iniciar Sesión en el Sistema de Registro de Asistencia.
+activate Sistema
+
+
+Sistema -> Sistema : Activa el Apartado para ingresar Usuario y Contraseña
+
+
+Sistema -> Profesor : Solicita Ingresar Usuario y Contraseña
+activate Profesor
+
+Profesor -> Profesor : Presenta Usuario y Contraseña
+
+Profesor -> Sistema : Usuario y Contraseña Igresado
+deactivate Profesor
+
+
+Sistema -> Sistema : Activa el Apartado "Registo de Asistencia con Tarjeta NFC"
+
+
+Sistema -> Profesor : Solicita Seleccionar una Opcion del Menu
+activate Profesor
+
+Profesor -> Sistema : Selecciona la Opción "Registo de Asistencia con Tarjeta NFC"
+deactivate Profesor
+
+
+Sistema -> Sistema : Activa Lectura NFC y Espera Tarjeta
+
+
+Sistema -> Profesor : Solicita Presentar Tarjeta
+activate Profesor
+
+Profesor -> Profesor : Presenta Tarjeta NFC
+
+Profesor --> Sistema : Tarjeta Ingresada
+deactivate Profesor
+
+
+
+Sistema -> Sistema : Verifica Validez de la Tarjeta
+Sistema -> Sistema : Registra Fecha y Hora de Asistencia del Profesor.
+Sistema -> Sistema : Actualiza Registro de Asistencia
+
+Sistema -> Profesor : Muestra Mensaje de Confirmacion "La Asitencia se Registro Correctamente"
+deactivate Sistema
+Profesor --> Profesor : Continúa con sus Actividade Docentes
+
+@enduml
